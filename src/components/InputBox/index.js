@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import { observer } from "mobx-react";
 
 const Input = styled.input`
   background: #222831;
@@ -12,10 +14,23 @@ const Input = styled.input`
   }
 `;
 
-const InputBox = ({onInputChange}) => {
+const InputBox = ({ store }) => {
   return (
-    <Input type="text" className="form-control" placeholder="Search for a movie here" onChange={(e) => onInputChange(e.target.value)} aria-label="Movie name input" aria-describedby="movie input box" />    
-  )
-}
+    <Input
+      type="text"
+      className="form-control"
+      placeholder="Search for a movie here"
+      onChange={e => {
+        store.onInputChange(e.target.value);
+      }}
+      aria-label="Movie input box"
+      aria-describedby="Enter movie name here"
+    />
+  );
+};
 
-export default InputBox;
+InputBox.propTypes = {
+  store: PropTypes.object.isRequired
+};
+
+export default observer(InputBox);
