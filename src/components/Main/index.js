@@ -1,21 +1,20 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import throttle from "lodash/throttle";
 import styled from "styled-components";
+import { DotScale } from "styled-loaders-react";
 import Title from "../Title";
 import InputBox from "../InputBox";
-import { getMovieDetails } from "../../api";
-import throttle from "lodash/throttle";
-import { DotScale } from "styled-loaders-react";
 import MovieGrid from "../MovieGrid";
 import Footer from "../Footer";
-
-const TopContainer = styled.div`
-  background: #393e46;
-  min-height: 100vh;
-`;
+import { getMovieDetails } from "../../api";
 
 const Container = styled.div`
   min-height: calc(100vh - 11em);
+`;
+
+const TopMostContainer = styled.div`
+  background: #393e46;
+  min-height: 100vh;
 `;
 
 class Main extends Component {
@@ -61,9 +60,9 @@ class Main extends Component {
   }
 
   render() {
-    const { loading, movie } = this.state;
+    const { loading } = this.state;
     return (
-      <TopContainer>
+      <TopMostContainer>
         <Title />
         {/* Bootstrap container */}
         <Container className="container">
@@ -77,13 +76,9 @@ class Main extends Component {
           {this.state.message}
         </Container>
         <Footer />
-      </TopContainer>
+      </TopMostContainer>
     );
   }
 }
-
-Main.propTypes = {
-  // store: PropTypes.object.isRequired
-};
 
 export default Main;

@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { observer } from "mobx-react";
-import throttle from "lodash/throttle";
 
 const Input = styled.input`
   color: #dba717;

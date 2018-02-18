@@ -25,10 +25,6 @@ const Link = styled.a`
   }
 `;
 
-const Credit = styled.div`
-  display: flex;
-`;
-
 const Footer = () => {
   return (
     <TopContainer>
@@ -38,7 +34,11 @@ const Footer = () => {
         </Link>
       </div>
       <div>
-        Made with ❤️ by{" "}
+        Made with{" "}
+        <span role="img" aria-labelledby="Red heart emoji">
+          ❤️
+        </span>{" "}
+        by{" "}
         <Link href="https://github.com/saisandeepvaddi" target="_blank">
           @saisandeepvaddi
         </Link>
