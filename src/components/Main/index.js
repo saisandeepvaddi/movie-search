@@ -6,10 +6,16 @@ import InputBox from "../InputBox";
 import { getMovieDetails } from "../../api";
 import throttle from "lodash/throttle";
 import { DotScale } from "styled-loaders-react";
+import MovieGrid from "../MovieGrid";
+import Footer from "../Footer";
 
 const TopContainer = styled.div`
   background: #393e46;
   min-height: 100vh;
+`;
+
+const Container = styled.div`
+  min-height: calc(100vh - 11em);
 `;
 
 class Main extends Component {
@@ -31,23 +37,26 @@ class Main extends Component {
     if (movie === "") {
       this.setState({
         loading: false,
-        movies: []
+        movies: [],
+        message: ""
       });
       return;
     }
     this.setState({
       movies: [],
-      loading: true
+      loading: true,
+      message: ""
     });
     const movies = await getMovieDetails(movie);
     this.setState({
       movies,
-      loading: false
+      loading: false,
+      message: movies.length === 0 ? "No Movies found" : ""
     });
   }
 
   onInputChange(movie) {
-    // console.log("Movie: ", movie);
+    this.setState({ message: "" });
     this.fetchMovies(movie);
   }
 
@@ -57,11 +66,17 @@ class Main extends Component {
       <TopContainer>
         <Title />
         {/* Bootstrap container */}
-        <div className="container">
+        <Container className="container">
           {/* pass mobx store to inputbox */}
           <InputBox onInputChange={this.onInputChange} />
-          {loading && <DotScale color="#00ADB5" />}
-        </div>
+          {loading ? (
+            <DotScale color="#00ADB5" />
+          ) : (
+            <MovieGrid movies={this.state.movies} />
+          )}
+          {this.state.message}
+        </Container>
+        <Footer />
       </TopContainer>
     );
   }

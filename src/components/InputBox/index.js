@@ -5,9 +5,11 @@ import { observer } from "mobx-react";
 import throttle from "lodash/throttle";
 
 const Input = styled.input`
+  color: #dba717;
   background: #222831;
   border: 1px solid #707070;
   &:focus {
+    color: #dba717;
     background: #222831;
   }
   &::placeholder {
@@ -19,7 +21,7 @@ const InputBox = ({ onInputChange }) => {
   return (
     <Input
       type="text"
-      className="form-control"
+      className="movie-input form-control"
       placeholder="Search for a movie here"
       onChange={e => onInputChange(e.target.value)}
       aria-label="Movie input box"
@@ -29,7 +31,7 @@ const InputBox = ({ onInputChange }) => {
 };
 
 InputBox.propTypes = {
-  // store: PropTypes.object.isRequired
+  onInputChange: PropTypes.func.isRequired
 };
 
 export default InputBox;
