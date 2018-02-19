@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import throttle from "lodash/throttle";
 import styled from "styled-components";
-import { DotScale } from "styled-loaders-react";
 import Title from "../Title";
 import InputBox from "../InputBox";
 import MovieGrid from "../MovieGrid";
@@ -15,6 +14,15 @@ const Container = styled.div`
 const TopMostContainer = styled.div`
   background: #393e46;
   min-height: 100vh;
+`;
+
+const Message = styled.h2`
+  font-family: "Acme", sans-serif;
+  color: #dba717;
+  padding: 1em;
+  width: 50%;
+  margin: 0 auto;
+  font-weight: 600;
 `;
 
 class Main extends Component {
@@ -55,7 +63,14 @@ class Main extends Component {
   }
 
   onInputChange(movie) {
-    this.setState({ message: "" });
+    if (movie === "") {
+      this.setState({
+        movies: [],
+        message: "",
+        loading: false
+      });
+    }
+    this.setState({ message: "", loading: false });
     this.fetchMovies(movie);
   }
 
@@ -66,14 +81,13 @@ class Main extends Component {
         <Title />
         {/* Bootstrap container */}
         <Container className="container">
-          {/* pass mobx store to inputbox */}
           <InputBox onInputChange={this.onInputChange} />
           {loading ? (
-            <DotScale color="#00ADB5" />
+            <Message>Fetching Movies...</Message>
           ) : (
             <MovieGrid movies={this.state.movies} />
           )}
-          {this.state.message}
+          <Message>{this.state.message}</Message>
         </Container>
         <Footer />
       </TopMostContainer>

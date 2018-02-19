@@ -17,9 +17,9 @@ const MovieGrid = ({ movies }) => {
     <TopContainer>
       {movies.map((movie, i) => {
         return (
-          <div>
+          <div key={i}>
             {i > 0 ? <Hr /> : null}
-            <Movie key={i} movie={movie} />
+            <Movie movie={movie} />
           </div>
         );
       })}
