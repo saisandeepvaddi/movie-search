@@ -45,7 +45,7 @@ const Footer = () => {
       </div>
       <div>
         <Link
-          href="https://github.com/saisandeepvaddi/movie-search-react"
+          href="https://github.com/saisandeepvaddi/movie-search"
           target="_blank"
         >
           Github
