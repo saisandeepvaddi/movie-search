@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "loaders.css": "^0.1.2",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.19",
     "partial-promises": "1.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
