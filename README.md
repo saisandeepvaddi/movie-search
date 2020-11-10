@@ -2,7 +2,7 @@
 
 ReactJS based Movies Search App  
 
-Current working demo available at [movie-search](https://moviesearch.now.sh/)   
+Current working demo available at [movie-search](https://movie-search-react.vercel.app/)   
 
 # Development
 
